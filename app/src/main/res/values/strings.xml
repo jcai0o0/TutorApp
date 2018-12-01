@@ -24,6 +24,11 @@
     <string name="hint_password">Password</string>
     <string name="hint_password2nd">Confirm password</string>
 
+    <string name="hint_personal_info_firstname">First Name</string>
+    <string name="hint_personal_info_lastname">Last Name</string>
+    <string name="hint_personal_info_phone_number">Phone Number</string>
+    <string name="personal_info_textview">Tell us more about you!</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="TutorSearchHintText">Enter Skill</string>
