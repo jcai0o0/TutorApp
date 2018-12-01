@@ -1,30 +1,83 @@
 package robertcurtis.jingnicai.sidiamadou.tutor.tutorapp;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import robertcurtis.jingnicai.sidiamadou.tutor.tutorapp.util.DBOperator;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import robertcurtis.jingnicai.sidiamadou.tutor.tutorapp.util.DBOperator;
+
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.database.Cursor;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import android.database.Cursor;
 import robertcurtis.jingnicai.sidiamadou.tutor.tutorapp.util.idObject;
 
-public class TutorActivity extends AppCompatActivity implements OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    Button LoginBtn;
-    EditText Username,Password;
+public class TutorActivity extends AppCompatActivity {
+
+    private static final String TAG ="LoginActivity";
+    private static final int REQUEST_SIGNUP = 0;
+
+    @BindView(R.id.LoginUsername) EditText _usernameText;
+    @BindView(R.id.LoginPassword) EditText _passwordText;
+    @BindView(R.id.LoginButton) Button _loginButton;
+    @BindView(R.id.link_signup) TextView _signupLink;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor);
-        LoginBtn = this.findViewById(R.id.LoginButton);
-        LoginBtn.setOnClickListener(this);
-        Username = this.findViewById(R.id.LoginUsername);
-        Password = this.findViewById(R.id.LoginPassword);
+        ButterKnife.bind(this);
+
+        _loginButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+
+        _signupLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //start the signup activity
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
+            }
+        });
+    }
+
+    public void login(){
+        Log.d(TAG,"Login");
+
+        if (!validate()){
+            onLoginFailed();
+            return;
+        }
+
+        _loginButton.setEnabled(false);
+
+        final ProgressDialog progressDialog = new ProgressDialog(TutorActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
+        progressDialog.show();
+
+        String usernameText = _usernameText.getText().toString();
+        String password = _passwordText.getText().toString();
+
+        //TODO: Implement authentication logic here
 
         try{
             DBOperator.copyDB(getBaseContext());

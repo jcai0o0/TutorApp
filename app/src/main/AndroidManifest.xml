@@ -37,6 +37,8 @@
             android:name=".MyTutorsActivity"
             android:label="@string/title_activity_my_tutors"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SignUpActivity"/>
     </application>
 
 </manifest>
