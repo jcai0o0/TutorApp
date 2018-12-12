@@ -33,10 +33,10 @@ public class LandingPageActivity extends AppCompatActivity implements OnClickLis
         extras = i.getExtras();
 
         // hide button based on user category
-        if (i.hasExtra("StudentID") && !extras.getString("StudentID").equals("null")) {
+        if (i.hasExtra("StudentID") && !extras.getString("StudentID").equals("null") && i.hasExtra("TutorID") && extras.getString("TutorID").equals("null")) {
             StudentSearchBtn.setVisibility(View.GONE);
             MyStudentsBtn.setVisibility(View.GONE);
-        } else if (i.hasExtra("TutorID") && !extras.getString("TutorID").equals("null")) {
+        } else if (i.hasExtra("TutorID") && !extras.getString("TutorID").equals("null") && i.hasExtra("StudentID") && extras.getString("StudentID").equals("null")) {
             TutorSearchBtn.setVisibility(View.GONE);
             MyTutorsBtn.setVisibility(View.GONE);
         }

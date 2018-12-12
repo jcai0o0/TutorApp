@@ -46,6 +46,9 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
 
+    <!-- landing page -->
+    <string name="landing_intro">Welcome to iTutor</string>
+
     <!-- Logo description -->
     <string name="logo_description">Logo description</string>
 

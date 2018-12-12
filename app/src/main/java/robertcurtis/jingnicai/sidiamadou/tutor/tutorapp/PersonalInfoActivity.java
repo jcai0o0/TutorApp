@@ -98,6 +98,7 @@ public class PersonalInfoActivity extends AppCompatActivity implements View.OnCl
 
             Intent i = new Intent(this, LandingPageActivity.class);
             i.putExtra("StudentID",student_id);
+            i.putExtra("TutorID","null");
             this.startActivity(i);
             finish();
         } catch (Exception e) {
